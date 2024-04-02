@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: price-service
+          uri: lb://price-service
+          predicates:
+            - Path=/asset/**
+        - id: position-service
+          uri: lb://position-service
+          predicates:
+            - Path=/positions/**
+        - id: eligibility-service
+          uri: lb://eligibility-service
+          predicates:
+            - Path=/eligibility/**
+        - id: collateral-service
+          uri: lb://collateral-service
+          predicates:
+            - Path=/accounts/**
+server:
+  port: 8989
